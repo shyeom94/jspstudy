@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My first jsp</title>
+</head>
+<body>
+<h1>http://localhost:8080/servlet/a/b.html</h1>
+</body>
+</html>
