@@ -85,3 +85,11 @@
 0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:33:32 +0900] "GET /servelt/request?number=10 HTTP/1.1" 404 827
 0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:33:48 +0900] "GET /servlet/pkg02_request/NewFile.html HTTP/1.1" 200 232
 0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:33:49 +0900] "GET /servlet/request?number=10 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Feb/2024:16:36:32 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:36:33 +0900] "GET /servlet/pkg02_request/NewFile.html HTTP/1.1" 200 244
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:36:34 +0900] "GET /servlet/request?number=10&number2=1.5 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:36:41 +0900] "GET /servlet/request?number=10&number2=1.5 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:42:36 +0900] "GET /servlet/pkg02_request/NewFile.html HTTP/1.1" 200 502
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:42:38 +0900] "GET /servlet/request?number=10&number2=1.5 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:42:41 +0900] "GET /servlet/request?number=10&number2=1.5 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [27/Feb/2024:16:42:42 +0900] "GET /servlet/request?number=10&number2=1.5 HTTP/1.1" 200 -
