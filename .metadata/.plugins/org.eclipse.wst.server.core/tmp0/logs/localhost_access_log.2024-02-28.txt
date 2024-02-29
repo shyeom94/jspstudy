@@ -60,3 +60,14 @@
 0:0:0:0:0:0:0:1 - - [28/Feb/2024:14:30:30 +0900] "GET /servlet/stopover HTTP/1.1" 200 75
 0:0:0:0:0:0:0:1 - - [28/Feb/2024:14:36:15 +0900] "GET /servlet/pkg04_forward/NewFile.html HTTP/1.1" 200 188
 0:0:0:0:0:0:0:1 - - [28/Feb/2024:14:36:17 +0900] "GET /servlet/stopover?luggage=%EB%9D%BC%EB%A9%B4 HTTP/1.1" 200 113
+127.0.0.1 - - [28/Feb/2024:15:17:58 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:17:59 +0900] "GET /servlet/pkg05_redirect/NewFile.html HTTP/1.1" 200 186
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:18:01 +0900] "GET /servlet/destination1?luggage=%EA%B9%80%EC%B9%98 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:18:01 +0900] "GET /servlet/destination2 HTTP/1.1" 200 111
+127.0.0.1 - - [28/Feb/2024:15:33:00 +0900] "GET / HTTP/1.1" 404 808
+127.0.0.1 - - [28/Feb/2024:15:34:28 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:34:30 +0900] "GET /servlet/pkg05_redirect/NewFile.html HTTP/1.1" 200 186
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:34:31 +0900] "GET /servlet/destination1?luggage=kimchi HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:34:31 +0900] "GET /servlet/destination2?luggage=kimchi HTTP/1.1" 200 113
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:49:14 +0900] "GET /servlet/pkg06_upload/NewFile.html HTTP/1.1" 200 856
+0:0:0:0:0:0:0:1 - - [28/Feb/2024:15:50:21 +0900] "GET /servlet/pkg06_upload/NewFile.html HTTP/1.1" 200 918

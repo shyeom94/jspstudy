@@ -33,10 +33,10 @@ public class MyRequest extends HttpServlet {
 	      number = Integer.parseInt(strNumber); 
 	    System.out.println(number); 
 	  
-	  /* Optional<T> 클래스를 이용한 null 처리 */
+	  /* Optional<T> 클래스를 이용한 [null & 빈 문자열] 처리 */
 	  String strNumber2 = request.getParameter("number2");
 	  Optional<String> opt = Optional.ofNullable(strNumber2); 
-	  double number2 = Double.parseDouble(opt.orElse("0").isEmpty() ? "0" : strNumber2); // strNumber2가 0이면, 0을 꺼내라.
+	  double number2 = Double.parseDouble(opt.orElse("0").isEmpty() ? "0" : opt.orElse("0")); // strNumber2가 0이면, 0을 꺼내라.
     System.out.println(number2);
 	}
 
