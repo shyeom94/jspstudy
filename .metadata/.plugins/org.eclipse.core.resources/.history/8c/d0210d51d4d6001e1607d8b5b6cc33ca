@@ -58,7 +58,7 @@ public class ReadCookie extends HttpServlet {
     out.println("for(let i=0; i < btnDelete.length; i++){");
     out.println("  btnDelete[i].addEventListener('click', (evt)=>{");
 	  out.println("  if(confirm('삭제할까요?')){");
-    out.println("      location.href=`" + request.getContextPath() + "/deleteCookie?cookieName=${evt.target.dataset.cookieName}`;");
+    out.println("      location.href=`" + request.getContextPath() + "/deleteCookie?cookieName=${evt.target.dataset.cookieName};`");
 	  out.println("  }");
 	  out.println("})");
 	  out.println("}");
