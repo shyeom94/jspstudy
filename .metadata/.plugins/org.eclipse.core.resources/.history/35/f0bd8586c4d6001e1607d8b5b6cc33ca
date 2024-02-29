@@ -1,0 +1,34 @@
+package pkg07_Cookie;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class SaveCookie extends HttpServlet {
+  
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	  // 요청 및 요청 파라미터
+	  request.setCharacterEncoding("UTF-8");
+	  String name = request.getParameter("name");
+	  String email = request.getParameter("email");
+	  
+	  // 쿠키 만들기(쿠키 이름, 유지 시간, 저장 경로)
+	  Cookie cookie1 = new Cookie("name", name);
+	  Cookie cookie2 = new Cookie("email", email);
+	  
+	  // 쿠키 저장(응답) -> response 서버가 클라이언트에게 보내주는 것
+	  
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

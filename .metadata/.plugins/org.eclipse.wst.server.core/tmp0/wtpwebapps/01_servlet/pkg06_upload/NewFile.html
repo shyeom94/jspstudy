@@ -66,13 +66,13 @@ margin-top : 10px;
   function checkFile(inp){
 	  if(isOversize(inp.files[0])){
 		  alert('첨부 파일의 최대 크기는 5MB 입니다.');
-		  inp.value = '';
+		  inp.value = ''; 
 		  return;
 	  }
 	  
 	  if(!isImage(inp.files[0])){
 		  alert('이미지 파일만 첨부할 수 있습니다.');
-		  inp.value = '';
+		  inp.value = ''; 
 		  return;
 	  }
 	  
