@@ -1,0 +1,32 @@
+package pkg08_ajax;
+
+import java.io.IOException;
+import java.net.URL;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class GetData1 extends HttpServlet {
+  
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  
+	  // 1시간마다 갱신되는 전국 날씨 정보
+	  String spec = "http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
+	  
+	  // URL 객체
+	  URL url = new URL(spec); 
+	  
+	  // HttpURLConnection 객체 
+	  ㅗ
+	  
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
