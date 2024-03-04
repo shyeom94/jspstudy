@@ -72,8 +72,8 @@ public class GetData2 extends HttpServlet {
 	    out.flush();
 	    out.close();
 	    
-	  // #$.ajax.fail() 메소드로 전달되는 응답 만들기
 	  } catch (Exception e) {
+	    // #$.ajax.fail() 메소드로 전달되는 응답 만들기
 	    // 1) 응답 코드 만들기
 	    response.setStatus(responseCode);
 	    // 2) 응답 메세지 만들기
