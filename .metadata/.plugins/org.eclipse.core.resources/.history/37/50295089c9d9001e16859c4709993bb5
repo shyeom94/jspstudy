@@ -96,18 +96,6 @@ crossorigin="anonymous">
 		  dataType: 'json',   // 'xml', 'json' 
 		  
 		  
-		  
-		  success: (resData)=>{
-		  }, 
-		  error: (jqXHR)=> { 
-		  }
-		  
-		  
-		  
-	  }).done((resData)=>{
-		  
-	  }).fail((jqXHR)=>{
-		  
 	  })
   }
   

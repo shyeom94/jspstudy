@@ -84,36 +84,7 @@ crossorigin="anonymous">
   <table border="1">
     <tbody id="contents2"></tbody>
   </table>
-  <script>
-  
-  const getData2 = ()=>{
-	  // alert('Hola');
-	  $.ajax({
-		  /* 요청 property */
-		  type: 'GET', 
-		  url: '/servlet/getData2', 
-		  /* 응답 property */
-		  dataType: 'json',   // 'xml', 'json' 
-		  
-		  
-		  
-		  success: (resData)=>{
-		  }, 
-		  error: (jqXHR)=> { 
-		  }
-		  
-		  
-		  
-	  }).done((resData)=>{
-		  
-	  }).fail((jqXHR)=>{
-		  
-	  })
-  }
-  
-  $('#btn2').on('click', getData2);
-  
-  </script>
+  <script></script>
   
 </body>
 </html>

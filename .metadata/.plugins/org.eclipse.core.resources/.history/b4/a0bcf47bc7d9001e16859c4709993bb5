@@ -20,8 +20,6 @@ crossorigin="anonymous">
   </table>
   <script>
   
-  // XML 데이터 요청
-  
   const getData1 = ()=>{
 	  // alert("Hello");
 	  
@@ -49,7 +47,7 @@ crossorigin="anonymous">
 		   const contents1 = document.getElementById('contents1');
 		   contents1.innerHTML = '';
 		   
-		   // <weather year=""
+		   // <weather yaer=""
 		   const weather = xmlDoc.getElementsByTagName('weather')[0];
 		   contents1.innerHTML += '<tr><td colspan="3">'
 			                     + weather.getAttribute('year') + '-'
@@ -65,7 +63,6 @@ crossorigin="anonymous">
 				 str += '<td>' + locals[i].getAttribute('desc') + '</td>'; 
 				 str += '<td>' + locals[i].getAttribute('ta') + '</td>'; 
 				 str += '</tr>'; 
-				 contents1.innerHTML += str; 
 				 
 			 }
 			 
@@ -73,45 +70,6 @@ crossorigin="anonymous">
   } 
   
   document.getElementById("btn1").addEventListener('click', getData1);
-  
-  </script>
-  
-  <hr>
-  
-  <div>
-    <button type="button" id="btn2">정보가져오기</button>
-  </div>
-  <table border="1">
-    <tbody id="contents2"></tbody>
-  </table>
-  <script>
-  
-  const getData2 = ()=>{
-	  // alert('Hola');
-	  $.ajax({
-		  /* 요청 property */
-		  type: 'GET', 
-		  url: '/servlet/getData2', 
-		  /* 응답 property */
-		  dataType: 'json',   // 'xml', 'json' 
-		  
-		  
-		  
-		  success: (resData)=>{
-		  }, 
-		  error: (jqXHR)=> { 
-		  }
-		  
-		  
-		  
-	  }).done((resData)=>{
-		  
-	  }).fail((jqXHR)=>{
-		  
-	  })
-  }
-  
-  $('#btn2').on('click', getData2);
   
   </script>
   

@@ -76,44 +76,5 @@ crossorigin="anonymous">
   
   </script>
   
-  <hr>
-  
-  <div>
-    <button type="button" id="btn2">정보가져오기</button>
-  </div>
-  <table border="1">
-    <tbody id="contents2"></tbody>
-  </table>
-  <script>
-  
-  const getData2 = ()=>{
-	  // alert('Hola');
-	  $.ajax({
-		  /* 요청 property */
-		  type: 'GET', 
-		  url: '/servlet/getData2', 
-		  /* 응답 property */
-		  dataType: 'json',   // 'xml', 'json' 
-		  
-		  
-		  
-		  success: (resData)=>{
-		  }, 
-		  error: (jqXHR)=> { 
-		  }
-		  
-		  
-		  
-	  }).done((resData)=>{
-		  
-	  }).fail((jqXHR)=>{
-		  
-	  })
-  }
-  
-  $('#btn2').on('click', getData2);
-  
-  </script>
-  
 </body>
 </html>
