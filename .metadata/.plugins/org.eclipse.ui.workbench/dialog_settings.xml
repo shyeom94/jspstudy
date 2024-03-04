@@ -3,10 +3,12 @@
 	<section name="WorkbenchPreferenceDialog">
 		<item key="DIALOG_X_ORIGIN" value="411"/>
 		<item key="DIALOG_Y_ORIGIN" value="8"/>
-		<item key="DIALOG_WIDTH" value="739"/>
-		<item key="DIALOG_HEIGHT" value="1080"/>
+		<item key="DIALOG_WIDTH" value="1281"/>
+		<item key="DIALOG_HEIGHT" value="1032"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 	<section name="NewWizardAction">
+	</section>
+	<section name="org.eclipse.ui.preferences.keysPreferencePage">
 	</section>
 </section>
