@@ -33,7 +33,7 @@ public class GetData2 extends HttpServlet {
 	  String spec = urlBuilder.toString(); 
 	  
 	  // 응답 코드 
-	  int responseCode = 0;
+	  int responseCode = 0; 
 	  
 	  try {
 	    
