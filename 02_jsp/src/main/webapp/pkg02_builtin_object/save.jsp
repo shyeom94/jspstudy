@@ -2,9 +2,8 @@
 <%@page import="java.io.BufferedWriter"%>
 <%@page import="java.io.BufferedInputStream"%>
 <%@page import="java.io.File"%>
-<%@page language="java" 
-        contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
 <%
   // 요청 인코딩
   request.setCharacterEncoding("UTF-8");
@@ -46,7 +45,7 @@
   
   // 파일 확인을 위한 페이지로 이동하기
   response.sendRedirect(request.getContextPath() + "/pkg02_builtin_object/confirm.jsp");
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,9 +54,9 @@
 </head>
 <body>
 
-<div><%=createdAt%></div>
-<div><%=title%></div>
-<div><%=contents%></div>
+  <div><%=createdAt%></div>
+  <div><%=title%></div>
+  <div><%=contents%></div>
 
 </body>
 </html>
