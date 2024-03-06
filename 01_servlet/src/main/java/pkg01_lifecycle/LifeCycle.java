@@ -41,94 +41,80 @@ import jakarta.servlet.http.HttpServletResponse;
  *         
  */
 
-@WebServlet("/life") /* http://localhost:8080/servlet/life 주소를 입력하면 현재 Servlet 이 실행된다.*/
+@WebServlet("/life") /* http://localhost:8080/servlet/life 주소를 입력하면 현재 Servlet 이 실행된다. */
 
 public class LifeCycle extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     * 
-     * 생성자
-     * 1. Servlet 생성할 때 호출된다. 
-     * 2. 생성자 호출 이후에는 자동으로 init() 메소드가 호출된다.
-     */
-    public LifeCycle() {
-        super();
-        System.out.println("LifeCycle 생성자 호출");
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * @see HttpServlet#HttpServlet()
+   * 
+   *      생성자 1. Servlet 생성할 때 호출된다. 2. 생성자 호출 이후에는 자동으로 init() 메소드가 호출된다.
+   */
+  public LifeCycle() {
+    super();
+    System.out.println("LifeCycle 생성자 호출");
+  }
+
+  /**
+   * @see Servlet#init(ServletConfig)
+   * 
+   *      init() 메소드 1. Servlet 환경 설정을 담당하는 메소드이다. 2. init() 메소드 호출 뒤 자동으로
+   *      service() 메소드가 호출된다.
+   */
+  public void init(ServletConfig config) throws ServletException {
+    System.out.println("init() 메소드 호출");
+  }
+
+  /**
+   * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+   *      response)
+   * 
+   *      service() 1. 클라이언트로부터 요청을 받을 수 있다. (매개변수 HttpServletRequest request) 2.
+   *      클라이언트에게 응답할 수 있다. (매개변수 HttpServletResponse response) 3. service() 메소드가
+   *      있으면 여기서 요청과 응답을 해결한다. 4. service() 메소드가 없으면 doGet() 또는 doPost() 메소드가 요청에
+   *      따라 호출된다.
+   */
+  protected void service(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    System.out.println("service() 메소드 호출");
+    switch (request.getMethod()) { // 요청 정보가 담겨져있는 객체
+    case "GET":
+      doGet(request, response);
+      break;
+    case "POST":
+      doPost(request, response);
+      break;
     }
+  }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 * 
-	 * init() 메소드 
-	 * 1. Servlet 환경 설정을 담당하는 메소드이다.
-	 * 2. init() 메소드 호출 뒤 자동으로 service() 메소드가 호출된다.
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		System.out.println("init() 메소드 호출");	
-		}
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+   *      response)
+   * 
+   *      doGet() 1. GET 방식의 요청이 발생하면 자동으로 호출되는 메소드이다. 2. GET 방식의 요청 1)
+   *      <a href="http://localhost:8080/servlet/life"> <a href="/servlet/life">
+   *      2) <form method="GET" action="/servlet/life"> 3)
+   *      location.href='/servlet/life' 4) window.open('/servlet/life') 5)
+   *      $.ajax({ type: 'GET', url: '/servlet/life', ... })
+   */
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    System.out.println("goGet() 메소드 호출");
+    response.getWriter().append("Served at: ").append(request.getContextPath());
+  }
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 * 
-	 * service()
-	 * 1. 클라이언트로부터 요청을 받을 수 있다. (매개변수 HttpServletRequest request) 
-	 * 2. 클라이언트에게 응답할 수 있다.        (매개변수 HttpServletResponse response) 
-	 * 3. service() 메소드가 있으면 여기서 요청과 응답을 해결한다. 
-	 * 4. service() 메소드가 없으면 doGet() 또는 doPost() 메소드가 요청에 따라 호출된다. 
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  System.out.println("service() 메소드 호출");
-	  switch(request.getMethod()) { // 요청 정보가 담겨져있는 객체 
-	  case "GET" : 
-	    doGet(request, response);
-	    break;
-	  case "POST" : 
-	   doPost(request, response);
-	   break;
-	  } 
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * 
-	 * doGet()
-	 * 1. GET 방식의 요청이 발생하면 자동으로 호출되는 메소드이다.
-	 * 2. GET 방식의 요청
-	 *   1) <a href="http://localhost:8080/servlet/life">
-	 *      <a href="/servlet/life">
-	 *   2) <form method="GET" action="/servlet/life">
-	 *   3) location.href='/servlet/life'
-	 *   4) window.open('/servlet/life')
-	 *   5) $.ajax({
-	 *       type: 'GET',
-	 *       url: '/servlet/life',
-	 *       ...
-	 *     })
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    System.out.println("goGet() 메소드 호출");  
-	  response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * 
-	 * doPost()
-   * 1. POST 방식의 요청이 발생하면 자동으로 호출되는 메소드이다.
-   * 2. POST 방식의 요청
-   *   1) <form method="POST" action="/servlet/life">
-   *   2) $.ajax({
-   *       type: 'POST',
-   *       url: '/servlet/life',
-   *       ...
-   *     })
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  doGet(request, response); // doPost() 는 하는 일 없이 받은 것을 doGet() 으로 이관한다. 
-    System.out.println("goPost() 메소드 호출");  
-	}
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+   *      response)
+   * 
+   *      doPost() 1. POST 방식의 요청이 발생하면 자동으로 호출되는 메소드이다. 2. POST 방식의 요청 1)
+   *      <form method="POST" action="/servlet/life"> 2) $.ajax({ type: 'POST',
+   *      url: '/servlet/life', ... })
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response); // doPost() 는 하는 일 없이 받은 것을 doGet() 으로 이관한다.
+    System.out.println("goPost() 메소드 호출");
+  }
 
 }

@@ -10,12 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 // ctrl + shift + o -> 불필요한 import 정리
 public class MyRequest extends HttpServlet {
+  
 	private static final long serialVersionUID = 1L;
-       
-    public MyRequest() {
-        super();
-    }
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  
 	  // 1. 요청 UTF-8 인코딩 

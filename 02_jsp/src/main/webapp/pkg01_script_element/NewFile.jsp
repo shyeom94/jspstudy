@@ -5,7 +5,7 @@
   지시어(Directive)
   1. <%@ page %>    : 현재 페이지 설정, import 
   2. <%@ include %> : 현재 페이지에 다른 페이지를 포함시키고 싶을 때
-  3. <%@ taglib %>  : JSTL(Java Standard Tag Library)
+  3. <%@ taglib %>  : JSTL(JavaServerPage Standard Tag Library)
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
