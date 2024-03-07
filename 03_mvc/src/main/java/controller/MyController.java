@@ -59,7 +59,6 @@ public class MyController extends HttpServlet {
         request.getRequestDispatcher(actionForward.getView()).forward(request, response);
       }
     }
-
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
