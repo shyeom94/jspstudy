@@ -2,7 +2,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="pkg04_EL.Book"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 
 <%--
@@ -27,7 +27,6 @@
   1. 동일한 이름의 속성(Attribute)이 여러 영역에 동시에 존재하는 경우 우선적으로 사용되는 경향이 있다.
   2. 높은 순위                           낮은 순위
      pageContext > request > session > application
-  3. 
 --%>
 
 <%--
@@ -69,7 +68,11 @@
 
   <%-- JSP Bind 영역에 저장된 Java 객체 정보 확인 --%>
   <%
-  Book book = Book.builder().title("소나기").author("황순원").price(10000).build();
+  Book book = Book.builder()
+                  .title("소나기")
+                  .author("황순원")
+                  .price(10000)
+                  .build();
   pageContext.setAttribute("book", book);
   %>
   <div>${book.title}</div>
@@ -81,17 +84,24 @@
 
   <%-- JSP Bind 영역에 저장된 Map 정보 확인 --%>
   <%
-  Map<String, Object> map = Map.of("title", "어린왕자");
-  %>
+   Map<String, Object> map = Map.of("title", "어린왕자", 
+                                   "author", "생텍쥐베리", 
+                                   "price", 20000);
+   pageContext.setAttribute("map", map);
+ %>
 
   <div>${map.title}</div>
   <div>${map.author}</div>
   <div>${map.price}</div>
+  <hr>
 
   <%-- List 에 Book 객체를 3개 저장하고 EL 로 확인하기 --%>
   <%
-  List<Book> books = Arrays.asList(new Book("연어", "안도현", 1000), new Book("싯다르타", "헤르만 헤세", 2000),
-      new Book("1Q84", "무라카미 하루키", 3000));
+  List<Book> books = Arrays.asList(
+      new Book("연어", "안도현", 1000), 
+      new Book("싯다르타", "헤르만 헤세", 2000),
+      new Book("1Q84", "무라카미 하루키", 3000)
+  );
   pageContext.setAttribute("books", books);
   %>
   <div>${books.get(0).title}</div>
@@ -124,12 +134,12 @@
 
   <div>${a == 5 && b == 5},${a eq 5 and b eq 5}</div>
   <div>${a == 5 || b == 5},${a eq 5 or b eq 5}</div>
-  <div>${!(a == 5)},${not(a eq 5)}</div>
+  <div>${!(a == 5)},       ${not(a eq 5)}</div>
   <hr>
-  
+
   <div>${a > 0 ? "양수" : "음수"}</div>
   <hr>
-  
+
   <%--
   request 영역 사용 시 주의사항
   
@@ -143,9 +153,6 @@
       response.sendRedirect("/contextPath/URLMapping?number=10");
       
       ${param.number}, 문자열 타입 
-      
-      
-      
   --%>
 
 </body>

@@ -13,6 +13,7 @@
   <%
   String contextPath = request.getContextPath();
   %>
+  
   <div><%=contextPath%></div>
 
   <form method="POST"

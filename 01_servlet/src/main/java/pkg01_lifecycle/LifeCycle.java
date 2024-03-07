@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-//ctrl + shift + o -> 불필요한 import 정리
+//ctrl + shift + O -> 불필요한 import 정리
 
 /*
  *Servlet
@@ -38,7 +38,6 @@ import jakarta.servlet.http.HttpServletResponse;
  *    3) 변경 방법 
  *        (1) @WebServlet Annotation
  *        (2) WEB-INF/web.xml 
- *         
  */
 
 @WebServlet("/life") /* http://localhost:8080/servlet/life 주소를 입력하면 현재 Servlet 이 실행된다. */
