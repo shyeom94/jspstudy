@@ -1,6 +1,8 @@
 <%@ page language="java" 
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@
     <button id="btn" type="button">요청</button>
   </div>
   
-  <script src="/mvc/assets/js/index.js"></script>
+  <script src="${contextPath}/assets/js/index.js"></script>
   
 </body>
 </html>
