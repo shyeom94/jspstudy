@@ -1,6 +1,7 @@
 package com.gdu.prj.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.gdu.prj.common.ActionForward;
 import com.gdu.prj.dao.BoardDao;
@@ -19,9 +20,24 @@ public class BoardServiceImpl implements BoardService {
   private BoardDao boardDao = BoardDaoImpl.getInstance(); // 싱글톤 객체를 가져다가 사용할 수 있도록 변경.
 
   @Override
-  public ActionForward addBoard(HttpServletRequest request) {
-    // TODO Auto-generated method stub
-    return null;
+  public ActionForward addBoard(HttpServletRequest request) { // title, contents parameter
+    String title = request.getParameter("title"); 
+    String contents = request.getParameter("contents"); 
+    BoardDto board = BoardDto.builder()
+                             .title(title)
+                             .contents(contents)
+                             .build();
+    int insertCount = boardDao.insertBoard(board);
+    // redirect 경로는 URLMapping 으로 작성한다. 
+    String view = null;
+    // 실패 -> index.jsp, 성공 -> 목록보기
+    if (insertCount == 1) { // 성공 
+      view = request.getContextPath() + "/board/list.brd";
+    } else if (insertCount == 0){ //실패 
+      view = request.getContextPath() + "/main.brd";
+    }
+    // INSERT 이후 이동은 redirect 
+    return new ActionForward(view, true); // redirect 여부 -> true
   }
 
   @Override
@@ -35,25 +51,31 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public ActionForward getBoardByNo(HttpServletRequest request) {
-    // TODO Auto-generated method stub
-    return null;
+    Optional<String> opt = Optional.ofNullable(request.getParameter("board_no"));
+    int board_no = Integer.parseInt(opt.orElse("0"));
+    BoardDto board = boardDao.selectBoardByNo(board_no);
+    String view = null;
+    if (board != null) {
+      view = "/board/detail.jsp";
+      request.setAttribute("board", board);
+    } else {
+      view = "/index.jsp";
+    }
+    return new ActionForward(view, false); // forward 로 이동, request 에 data 저장 후 jsp 이름으로 이동! 
   }
 
   @Override
   public ActionForward editBoard(HttpServletRequest request) {
-    // TODO Auto-generated method stub
     return null;
   }
 
   @Override
   public ActionForward modifyBoard(HttpServletRequest request) {
-    // TODO Auto-generated method stub
     return null;
   }
 
   @Override
   public ActionForward removeBoard(HttpServletRequest request) {
-    // TODO Auto-generated method stub
     return null;
   }
 

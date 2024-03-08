@@ -36,8 +36,20 @@ public class BoardController extends HttpServlet {
 
     // 요청 주소에 따른 서비스 메소드 호출
     switch (urlMappping) {
-    case "/board/list.brd":
+    case "/board/list.brd": // 목록보기 요청 
       actionForward = boardService.getBoardList(request);
+      break;
+    case "/board/write.brd":
+      actionForward = new ActionForward("/board/write.jsp", false);
+      break;
+    case "/board/register.brd":
+      actionForward = boardService.addBoard(request);
+      break;
+    case "/main.brd":
+      actionForward = new ActionForward("/index.jsp", false);
+      break;
+    case "/board/detail.brd":
+      actionForward = boardService.getBoardByNo(request);
       break;
     }
 

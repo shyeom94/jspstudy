@@ -52,8 +52,8 @@ public class BoardDaoImpl implements BoardDao {
     int insertCount = 0;
     try {
       con = dataSource.getConnection(); // Connection 얻기
-      String sql = "INSERT INTO BOARD_T(BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT) "
-          + "VALUES(BOARD_SEQ.NEXTVAL, ?, ?, CURRENT_DATE, CURRENT_DATE )"; // Query 작성
+      String sql = "INSERT INTO BOARD_T(BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT) VALUES(BOARD_SEQ.NEXTVAL, ?, ?, CURRENT_DATE, CURRENT_DATE)";
+      // Query 작성
       ps = con.prepareStatement(sql);
       ps.setString(1, board.getTitle()); // ? 변수 처리
       ps.setString(2, board.getContents()); // ? 변수 처리
@@ -72,8 +72,7 @@ public class BoardDaoImpl implements BoardDao {
     int updateCount = 0;
     try {
       con = dataSource.getConnection();
-      String sql = "UPDATE BOARD_T " + "SET TITLE = ?, CONTENTS = ?, MODIFIED_AT = CURRENT_TIME "
-          + "WHERE BOARD_NO = ? "; //
+      String sql = "UPDATE BOARD_T SET TITLE = ?, CONTENTS = ?, MODIFIED_AT = CURRENT_TIME WHERE BOARD_NO = ?";
       ps = con.prepareStatement(sql);
       ps.setString(1, board.getTitle());
       ps.setString(2, board.getContents());
@@ -106,21 +105,24 @@ public class BoardDaoImpl implements BoardDao {
     return deleteCount;
   }
 
-  // 수정 필요 !!! 오류 발생 !!! 깃허브 참고 !!!
   @Override
   public List<BoardDto> selectBoardList(Map<String, Object> map) {
-    List<BoardDao> boardList = new ArrayList<>();
+    List<BoardDto> boardList = new ArrayList<>();
     try {
       con = dataSource.getConnection();
-      String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT CREATED_AT FROM BOARD_T OREDR BY BOARD_NO DECENDING";
+      String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT FROM BOARD_T ORDER BY BOARD_NO DESC";
       // 페이징 처리 없는 전체목록 보기
       ps = con.prepareStatement(sql);
       rs = ps.executeQuery();
       while (rs.next()) { // 갯수만큼 호출
-        BoardDto board = BoardDto.builder().board_no(rs.getInt(1)).title(rs.getString(2)).contents(rs.getString(3))
-            .modified_at(rs.getDate(4)).creadted_at(rs.getDate(5)).build();
-
-        // boardList.add(board); <= 깃허브 참고 !!!! 수정 필요 !!!!!!!
+        BoardDto board = BoardDto.builder()
+            .board_no(rs.getInt(1))
+            .title(rs.getString(2))
+            .contents(rs.getString(3))
+            .modified_at(rs.getDate(4))
+            .created_at(rs.getDate(5))
+          .build();
+        boardList.add(board);
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -128,7 +130,7 @@ public class BoardDaoImpl implements BoardDao {
       close();
     }
 
-    return null;
+    return boardList;
   }
 
   @Override
@@ -160,8 +162,13 @@ public class BoardDaoImpl implements BoardDao {
       ps.setInt(1, board_no);
       rs = ps.executeQuery();
       if (rs.next()) {
-        board = BoardDto.builder().board_no(rs.getInt(1)).title(rs.getString(2)).contents(rs.getString(3))
-            .modified_at(rs.getDate(4)).creadted_at(rs.getDate(5)).build();
+        board = BoardDto.builder()
+            .board_no(rs.getInt(1))
+            .title(rs.getString(2))
+            .contents(rs.getString(3))
+            .modified_at(rs.getDate(4))
+            .created_at(rs.getDate(5))
+            .build();
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -184,5 +191,4 @@ public class BoardDaoImpl implements BoardDao {
       e.printStackTrace();
     }
   }
-
 }
