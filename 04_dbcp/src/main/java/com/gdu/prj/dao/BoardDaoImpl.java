@@ -72,7 +72,7 @@ public class BoardDaoImpl implements BoardDao {
     int updateCount = 0;
     try {
       con = dataSource.getConnection();
-      String sql = "UPDATE BOARD_T SET TITLE = ?, CONTENTS = ?, MODIFIED_AT = CURRENT_TIME WHERE BOARD_NO = ?";
+      String sql = "UPDATE BOARD_T SET TITLE = ?, CONTENTS = ?, MODIFIED_AT = CURRENT_DATE WHERE BOARD_NO = ?";
       ps = con.prepareStatement(sql);
       ps.setString(1, board.getTitle());
       ps.setString(2, board.getContents());

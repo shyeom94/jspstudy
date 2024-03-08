@@ -21,22 +21,19 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public ActionForward addBoard(HttpServletRequest request) { // title, contents parameter
-    String title = request.getParameter("title"); 
-    String contents = request.getParameter("contents"); 
-    BoardDto board = BoardDto.builder()
-                             .title(title)
-                             .contents(contents)
-                             .build();
+    String title = request.getParameter("title");
+    String contents = request.getParameter("contents");
+    BoardDto board = BoardDto.builder().title(title).contents(contents).build();
     int insertCount = boardDao.insertBoard(board);
-    // redirect 경로는 URLMapping 으로 작성한다. 
+    // redirect 경로는 URLMapping 으로 작성한다.
     String view = null;
     // 실패 -> index.jsp, 성공 -> 목록보기
-    if (insertCount == 1) { // 성공 
+    if (insertCount == 1) { // 성공
       view = request.getContextPath() + "/board/list.brd";
-    } else if (insertCount == 0){ //실패 
+    } else if (insertCount == 0) { // 실패
       view = request.getContextPath() + "/main.brd";
     }
-    // INSERT 이후 이동은 redirect 
+    // INSERT 이후 이동은 redirect
     return new ActionForward(view, true); // redirect 여부 -> true
   }
 
@@ -61,22 +58,63 @@ public class BoardServiceImpl implements BoardService {
     } else {
       view = "/index.jsp";
     }
-    return new ActionForward(view, false); // forward 로 이동, request 에 data 저장 후 jsp 이름으로 이동! 
+    return new ActionForward(view, false); // forward 로 이동, request 에 data 저장 후 jsp 이름으로 이동!
   }
 
   @Override
-  public ActionForward editBoard(HttpServletRequest request) {
-    return null;
+  public ActionForward editBoard(HttpServletRequest request) {// 번호를 가지고 편집 화면으로 넘어감 -> SELECT
+    String param = request.getParameter("board_no");
+    int board_no = 0;
+    if (!param.isEmpty()) {
+      board_no = Integer.parseInt(param);
+    }
+    BoardDto board = boardDao.selectBoardByNo(board_no); //
+    String view = null;
+    if (board != null) {
+      view = "/board/edit.jsp";
+      request.setAttribute("board", board);
+    } else {
+      view = "/index.jsp";
+    }
+    return new ActionForward(view, false);
   }
 
   @Override
   public ActionForward modifyBoard(HttpServletRequest request) {
-    return null;
+    int board_no = Integer.parseInt(request.getParameter("board_no"));
+    String title = request.getParameter("title");
+    String contents = request.getParameter("contents");
+    BoardDto board = BoardDto.builder()
+                          .title(title)
+                          .contents(contents)
+                          .board_no(board_no)
+                          .build();
+    int updateCount = boardDao.updateBoard(board);
+    String view = null;
+    if (updateCount == 0) {
+      view = request.getContextPath() + "/main.brd";
+    } else {
+      view = request.getContextPath() + "/board/detail.brd?board_no=" + board_no;
+    }
+    return new ActionForward(view, true);
   }
 
   @Override
   public ActionForward removeBoard(HttpServletRequest request) {
-    return null;
+
+    String param = request.getParameter("board_no");
+    int board_no = 0;
+    if (!param.isEmpty()) {
+      board_no = Integer.parseInt(param);
+    }
+    int deleteCount = boardDao.deleteBoard(board_no);
+    String view = null;
+    if(deleteCount == 0) {
+      view = request.getContextPath() + "/main.brd";
+    } else {
+      view = request.getContextPath() + "/board/list.brd";
+    }
+    return new ActionForward(view, true); // redirect
   }
 
 }

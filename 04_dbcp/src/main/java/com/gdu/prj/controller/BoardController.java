@@ -39,17 +39,26 @@ public class BoardController extends HttpServlet {
     case "/board/list.brd": // 목록보기 요청 
       actionForward = boardService.getBoardList(request);
       break;
-    case "/board/write.brd":
+    case "/board/write.brd": 
       actionForward = new ActionForward("/board/write.jsp", false);
       break;
-    case "/board/register.brd":
+    case "/board/register.brd": 
       actionForward = boardService.addBoard(request);
       break;
-    case "/main.brd":
+    case "/main.brd": 
       actionForward = new ActionForward("/index.jsp", false);
       break;
-    case "/board/detail.brd":
+    case "/board/detail.brd": 
       actionForward = boardService.getBoardByNo(request);
+      break;
+    case "/board/edit.brd":
+      actionForward = boardService.editBoard(request); // board_no
+      break;
+    case "/board/modify.brd":
+      actionForward = boardService.modifyBoard(request); // 
+      break;
+    case "/board/remove.brd":
+      actionForward = boardService.removeBoard(request);
       break;
     }
 

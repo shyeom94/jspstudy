@@ -142,6 +142,7 @@
 
       <Context docBase="C:\GDJ77\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\GDJ77\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\04_dbcp" path="/dbcp" reloadable="true" source="org.eclipse.jst.jee.server:04_dbcp">
 
+<JarScanner scanClassPath="false"/>
   <!-- Connection Pool 처리에 필요한 Oracle 접속 정보 -->
   
   <!-- maxTotal: Maximum number of database connections in pool. Make sure you

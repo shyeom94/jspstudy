@@ -2,6 +2,7 @@
 
 <Context>
 
+<JarScanner scanClassPath="false"/>
   <!-- Connection Pool 처리에 필요한 Oracle 접속 정보 -->
   
   <!-- maxTotal: Maximum number of database connections in pool. Make sure you

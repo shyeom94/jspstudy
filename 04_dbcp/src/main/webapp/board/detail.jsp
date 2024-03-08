@@ -26,10 +26,24 @@
       <button type="button" id="btn-remove">삭제</button>
     </form>
   </div>
-  
+
   <script>
   
+  const frmBtn = $('#frm-btn');
+  const btnEdit = $('#btn-edit');
+  const btnRemove = $('#btn-remove');
   
+  btnEdit.on('click', (evt)=>{
+	  frmBtn.attr('action', '${contextPath}/board/edit.brd');
+	  frmBtn.submit();
+  })
+  
+  btnRemove.on('click', (evt)=>{
+	  if(confirm('게시글 삭제?')){
+		  frmBtn.attr('action', '${contextPath}/board/remove.brd');
+		  frmBtn.submit();
+	  }
+  })
   
   </script>
 
