@@ -11,7 +11,7 @@ import com.gdu.prj.dto.BoardDto;
 import jakarta.servlet.http.HttpServletRequest;
 
 /*
- * view - controller - service - dao - db
+ * view - (filter) - controller - service - dao - db
  */
 
 public class BoardServiceImpl implements BoardService {
@@ -108,6 +108,19 @@ public class BoardServiceImpl implements BoardService {
       board_no = Integer.parseInt(param);
     }
     int deleteCount = boardDao.deleteBoard(board_no);
+    String view = null;
+    if(deleteCount == 0) {
+      view = request.getContextPath() + "/main.brd";
+    } else {
+      view = request.getContextPath() + "/board/list.brd";
+    }
+    return new ActionForward(view, true); // redirect
+  }
+  
+  @Override
+  public ActionForward removeBoards(HttpServletRequest request) {
+    String param = request.getParameter("param");
+    int deleteCount = boardDao.deleteBoards(param);
     String view = null;
     if(deleteCount == 0) {
       view = request.getContextPath() + "/main.brd";

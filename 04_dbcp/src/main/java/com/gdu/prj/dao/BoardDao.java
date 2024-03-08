@@ -12,6 +12,8 @@ public interface BoardDao {
 
   int deleteBoard(int board_no);
 
+  int deleteBoards(String param);
+
   List<BoardDto> selectBoardList(Map<String, Object> map); // List 로 반환 읽어오기
 
   int getBoardCount(); // 총 갯수

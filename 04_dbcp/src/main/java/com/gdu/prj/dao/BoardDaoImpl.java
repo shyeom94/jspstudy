@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import com.gdu.prj.dto.BoardDto;
 
 /*
- * view - controller - service - dao - db
+ * view - (filter) - controller - service - dao - db
  */
 
 // 개발 순서상 dao 를 먼저 만드는 것이 좋다. 
@@ -104,6 +104,23 @@ public class BoardDaoImpl implements BoardDao {
     }
     return deleteCount;
   }
+  
+  
+ @Override
+public int deleteBoards(String param) {
+   int deleteCount = 0;
+   try {
+    con = dataSource.getConnection();
+    String sql = "DELETE FROM BOARD_T WHERE BOARD_NO IN(" + param + ")";
+    ps = con.prepareStatement(sql);
+    deleteCount = ps.executeUpdate();
+  } catch (Exception e) {
+  e.printStackTrace();
+  } finally {
+    close();
+  }
+   return deleteCount;
+}
 
   @Override
   public List<BoardDto> selectBoardList(Map<String, Object> map) {

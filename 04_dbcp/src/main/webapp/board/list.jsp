@@ -67,14 +67,15 @@
     		  return;
     	  }
     	  let array = [];
-    	  $.each(chkEach, (i, elem)->{
-    		  if($(elem).is(':checked')){ // if(elem.checked)
-    			  array.push($(elem.value));
+    	  $.each(chkEach, (i, elem)=>{
+    		  if (elem.checked) { // if($(elem).is(':checked'))
+    			  array.push(elem.value);
     		  }
     	  })
-    	  // console.log(array); // 콘솔로 확인 
+    	  console.log(array); // 콘솔로 확인 
     	  // array           === [3, 2, 1]
     	  // array.join(',') === '3, 2, 1'
+    	  location.href = '${contextPath}/board/removes.brd?param=' + array.join(',');
       })
       </script>
     </c:if>

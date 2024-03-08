@@ -17,4 +17,6 @@ public interface BoardService {
   ActionForward modifyBoard(HttpServletRequest request);
 
   ActionForward removeBoard(HttpServletRequest request);
+
+  ActionForward removeBoards(HttpServletRequest request);
 }
