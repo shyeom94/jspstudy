@@ -6,18 +6,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome</title>
-<!-- jQuery -->
+<title>게시판</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
-
 </head>
 <body>
 
   <div>
-    <a href="${contextPath}/board/list.brd">게시판</a>
+    <a>새게시글작성</a>
   </div>
+
+  <hr>
+
+  <div>
+    <span>게시글 개수</span> <span>${boardCount}</span>
+  </div>
+
+  <div>${empty boardList}</div>
 
 </body>
 </html>
