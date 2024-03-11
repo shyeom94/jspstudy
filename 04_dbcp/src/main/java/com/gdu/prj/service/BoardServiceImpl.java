@@ -78,8 +78,10 @@ public class BoardServiceImpl implements BoardService {
     request.setAttribute("total", total); // request 에 최종 저장하고 전달하는 forward 작업을 하면 전달된다.
     request.setAttribute("boardList", boardList);
     request.setAttribute("paging", paging);
+    request.setAttribute("display", display); 
+    request.setAttribute("sort", sort); 
     
-    return new ActionForward("/board/list.jsp", false); // 폴더이름/파일이름 , true 면 redirect // false 면 forward 된다.
+    return new ActionForward("/board/list.jsp", false); // 폴더이름/파일이름 (true 면 redirect, false 면 forward 된다.)
   }
 
   @Override

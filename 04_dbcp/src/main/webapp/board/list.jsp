@@ -72,8 +72,9 @@
   </div>
 
   <div>
-    <a href="${contextPath}/board/list.brd?page=1&sort=DESC">내림차순</a> <span>|</span>
-    <a href="${contextPath}/board/list.brd?page=1&sort=ASC">오름차순</a>
+    <a href="${contextPath}/board/list.brd?page=1&sort=DESC&display=${display}">내림차순</a> 
+    <span>|</span>
+    <a href="${contextPath}/board/list.brd?page=1&sort=ASC&display=${display}">오름차순</a>
   </div>
 
   <div>
@@ -85,8 +86,9 @@
   </div>
 
   <script>
+  document.getElementById('display').value = ${display};
   document.getElementById('display').addEventListener('change', (evt)=>{
-	  location.href = '${contextPath}/board/list.brd?display=' + evt.target.value;
+	  location.href = '${contextPath}/board/list.brd?page=1&sort=${sort}&display=' + evt.target.value;
   })
   </script>
 
