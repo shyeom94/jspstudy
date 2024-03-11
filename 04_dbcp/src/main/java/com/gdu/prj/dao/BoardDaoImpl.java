@@ -130,7 +130,7 @@ public int deleteBoards(String param) {
     try {
       con = dataSource.getConnection(); 
       String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT" 
-                 + "  FROM (SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT" // 정렬 자리 
+                 + "  FROM (SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO " + params.get("sort") + ") AS RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT" // 정렬 자리 
                  + "          FROM BOARD_T)" 
                  + " WHERE RN BETWEEN ? AND ?"; 
       
@@ -154,7 +154,6 @@ public int deleteBoards(String param) {
     } finally {
       close();
     }
-
     return boardList;
   }
 

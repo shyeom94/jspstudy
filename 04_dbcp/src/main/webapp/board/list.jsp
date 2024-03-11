@@ -21,10 +21,14 @@
 }
 
 .row>span:nth-of-type(2) {
-  width: 150px;
+  width: 50px;
 }
 
 .row>span:nth-of-type(3) {
+  width: 150px;
+}
+
+.row>span:nth-of-type(4) {
   width: 100px;
 }
 
@@ -32,6 +36,25 @@
   display: flex;
 }
 
+.paging>div {
+  width: 30px;
+  higth: 20px;
+  text-align: center;
+  line-hight: 20px
+}
+
+.paging a {
+  color: black;
+  text-decoration: none;
+}
+
+.dont-click {
+  color: silver;
+}
+
+.current-page {
+  color: limegreen ! important;
+}
 </style>
 
 </head>
@@ -45,9 +68,27 @@
   <hr>
 
   <div>
-    <span>게시글 개수</span> 
-    <span>${total}</span>
+    <span>게시글 개수</span> <span>${total}</span>
   </div>
+
+  <div>
+    <a href="${contextPath}/board/list.brd?page=1&sort=DESC">내림차순</a> <span>|</span>
+    <a href="${contextPath}/board/list.brd?page=1&sort=ASC">오름차순</a>
+  </div>
+
+  <div>
+    <select id="display">
+      <option>20</option>
+      <option>50</option>
+      <option>100</option>
+    </select>
+  </div>
+
+  <script>
+  document.getElementById('display').addEventListener('change', (evt)=>{
+	  location.href = '${contextPath}/board/list.brd?display=' + evt.target.value;
+  })
+  </script>
 
   <div class="paging">${paging}</div>
 
@@ -58,9 +99,9 @@
     <c:if test="${not empty boardList}">
       <c:forEach items="${boardList}" var="board">
         <div class="row">
-          <span><input type="checkbox" class="chk-each"
-            value="${board.board_no}"></span> <span><a
-            href="${contextPath}/board/detail.brd?board_no=${board.board_no}">${board.title}</a></span>
+          <span><input type="checkbox" class="chk-each" value="${board.board_no}"></span> 
+          <span>${board.board_no}</span>
+          <span><a href="${contextPath}/board/detail.brd?board_no=${board.board_no}">${board.title}</a></span>
           <span>${board.created_at}</span>
         </div>
       </c:forEach>

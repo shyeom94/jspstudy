@@ -28,16 +28,15 @@ public class BoardFilter extends HttpFilter implements Filter {
     // 요청 방식 확인, 요청 주소 확인
     System.out.print(String.format("%-4s", req.getMethod()));
     System.out.print(" | ");
-    System.out.print(req.getRequestURI());
-    
+    System.out.println(req.getRequestURI());
+
     // 요청 parameter 확인
     Map<String, String[]> params = req.getParameterMap();
     for (Map.Entry<String, String[]> param : params.entrySet()) {
-      System.out.println(String.format("%7s", " "));
-      System.out.println(String.format("%-10s", param.getKey()) + " : ");
+      System.out.print(String.format("%7s", " "));
+      System.out.print(String.format("%-10s", param.getKey()) + " : ");
       System.out.println(Arrays.toString(param.getValue()));
     }
     chain.doFilter(request, response);
   }
-
 }
