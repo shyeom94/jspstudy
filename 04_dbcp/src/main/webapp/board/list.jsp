@@ -27,6 +27,11 @@
 .row>span:nth-of-type(3) {
   width: 100px;
 }
+
+.paging {
+  display: flex;
+}
+
 </style>
 
 </head>
@@ -40,8 +45,11 @@
   <hr>
 
   <div>
-    <span>게시글 개수</span> <span>${boardCount}</span>
+    <span>게시글 개수</span> 
+    <span>${total}</span>
   </div>
+
+  <div class="paging">${paging}</div>
 
   <div>
     <c:if test="${empty boardList}">

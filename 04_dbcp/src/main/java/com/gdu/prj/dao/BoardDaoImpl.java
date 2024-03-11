@@ -123,13 +123,21 @@ public int deleteBoards(String param) {
 }
 
   @Override
-  public List<BoardDto> selectBoardList(Map<String, Object> map) {
+  public List<BoardDto> selectBoardList(Map<String, Object> params) {
     List<BoardDto> boardList = new ArrayList<>();
+    
+    // 페이징 처리하여 전체목록 보기
     try {
-      con = dataSource.getConnection();
-      String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT FROM BOARD_T ORDER BY BOARD_NO DESC";
-      // 페이징 처리 없는 전체목록 보기
+      con = dataSource.getConnection(); 
+      String sql = "SELECT BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT" 
+                 + "  FROM (SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) AS RN, BOARD_NO, TITLE, CONTENTS, MODIFIED_AT, CREATED_AT" // 정렬 자리 
+                 + "          FROM BOARD_T)" 
+                 + " WHERE RN BETWEEN ? AND ?"; 
+      
       ps = con.prepareStatement(sql);
+      ps.setInt(1, (int)params.get("begin"));
+      ps.setInt(2, (int)params.get("end"));
+      
       rs = ps.executeQuery();
       while (rs.next()) { // 갯수만큼 호출
         BoardDto board = BoardDto.builder()

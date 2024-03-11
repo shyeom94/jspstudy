@@ -1,12 +1,14 @@
 package com.gdu.prj.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.gdu.prj.common.ActionForward;
 import com.gdu.prj.dao.BoardDao;
 import com.gdu.prj.dao.BoardDaoImpl;
 import com.gdu.prj.dto.BoardDto;
+import com.gdu.prj.utils.MyPageUtils;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -19,6 +21,9 @@ public class BoardServiceImpl implements BoardService {
   // service 는 dao 를 호출한다.
   private BoardDao boardDao = BoardDaoImpl.getInstance(); // 싱글톤 객체를 가져다가 사용할 수 있도록 변경.
 
+  // 목록 보기는 MyPageUtils 객체가 필요하다.
+  private MyPageUtils myPageUtils = new MyPageUtils(); // 객체 생성 
+  
   @Override
   public ActionForward addBoard(HttpServletRequest request) { // title, contents parameter
     String title = request.getParameter("title");
@@ -38,11 +43,37 @@ public class BoardServiceImpl implements BoardService {
   }
 
   @Override
-  public ActionForward getBoardList(HttpServletRequest request) {
-    int boardCount = boardDao.getBoardCount();
-    List<BoardDto> boardList = boardDao.selectBoardList(null); // db 에서 가져온 목록이 저장된다.
-    request.setAttribute("boardCount", boardCount); // request 에 최종 저장하고 전달하는 forward 작업을 하면 전달된다.
+  public ActionForward getBoardList(HttpServletRequest request) { // 게시글 목록 가져오며 페이징 처리 
+    
+    // 전체 게시글 개수
+    int total = boardDao.getBoardCount();
+    
+    // 한 페이지에 표시할 게시글 개수 display 
+    Optional<String> optDisplay = Optional.ofNullable(request.getParameter("display")); // 전달되면 전달된 것을 쓰고, 
+    int display = Integer.parseInt(optDisplay.orElse("20")); // 안되면 20을 쓴다.
+    
+    // 현재 페이지 번호 
+    Optional<String> optPage = Optional.ofNullable(request.getParameter("page")); // 
+    int page = Integer.parseInt(optPage.orElse("1")); // 
+    
+    // 페이징 처리에 필요한 변수값 계산하기
+    myPageUtils.setPaging(total, display, page);
+    
+    // 목록을 가져올 때 필요한 변수를 Map 에 저장한다.  
+    Map<String, Object> params = Map.of("begin", myPageUtils.getBegin(), 
+                                          "end", myPageUtils.getEnd());    
+    
+    // 목록 가져오기
+    List<BoardDto> boardList = boardDao.selectBoardList(params); // db 에서 가져온 목록이 저장된다.
+    
+    // 페이지 링크 가져오기
+    String paging = myPageUtils.getPaging("");
+    
+    // JSP 에 전달할 데이터들
+    request.setAttribute("total", total); // request 에 최종 저장하고 전달하는 forward 작업을 하면 전달된다.
     request.setAttribute("boardList", boardList);
+    request.setAttribute("paging", paging);
+    
     return new ActionForward("/board/list.jsp", false); // 폴더이름/파일이름 , true 면 redirect // false 면 forward 된다.
   }
 
